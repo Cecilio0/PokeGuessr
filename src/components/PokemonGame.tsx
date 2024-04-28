@@ -1,13 +1,8 @@
 "use client";
 
-import { getPokemonById } from "@/utils/helpers/pokemon.helper";
 import Pokemon from "@/utils/interfaces/pokemon.interface";
-import {
-  getNDistinctRandomNumbers,
-  getRandomIntegerInRange,
-} from "@/utils/random.util";
-import PokemonButton from "./PokemonButton";
 import { useState } from "react";
+import Image from "next/image";
 
 interface PokemonGameProps {
   pokemonArray: Array<Pokemon>;
@@ -34,12 +29,13 @@ export default function PokemonGame({
       <div className="flex flex-col items-center">
         <p>Try to guess the pokemon</p>
       </div>
-      <img
-        className={isClear ? "clear" : "black"}
+      <Image
+        className={`h-64 ${isClear ? "clear" : "black"}`}
         src={`${POKEMON_IMAGE_API_URL}${correctPokemonId}.svg`}
         alt="Some text"
-        width={300}
-        height={300}
+        width={1024}
+        height={256}
+        priority={true}
       />
       <div className="rounded-lg px-4 py-1 items-center text-black">
         <ul>

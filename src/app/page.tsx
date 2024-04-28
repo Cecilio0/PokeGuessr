@@ -5,7 +5,6 @@ import {
   getNDistinctRandomNumbers,
   getRandomIntegerInRange,
 } from "@/utils/random.util";
-import { Suspense } from "react";
 
 export default async function Home() {
   async function getPokemonArrayById(
@@ -28,7 +27,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-blue-300">
-      <div className="flex flex-col w-fit-content max-w-5xl items-center justify-between font-mono text-sm lg:flex rounded-lg p-4">
+      <div className="flex flex-col w-fit-content max-w-5xl items-center justify-between text-sm lg:flex rounded-lg p-4">
         <PokemonGame
           pokemonArray={pokemonArray}
           correctPokemonId={correctPokemonId}
