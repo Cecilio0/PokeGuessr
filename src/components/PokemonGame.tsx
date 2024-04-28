@@ -52,7 +52,7 @@ export default function PokemonGame({
                 onClick={() => onButtonClick(pokemon.id)}
                 disabled={isClear ? true : false}
               >
-                {pokemon.name}
+                <p className="hover:font-bold">{pokemon.name}</p>
               </button>
             </li>
           ))}
