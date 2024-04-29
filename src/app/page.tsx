@@ -26,13 +26,11 @@ export default async function Home() {
   const pokemonArray = await getPokemonArrayById(pokemonIds);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-blue-300">
-      <div className="flex flex-col w-fit-content max-w-5xl items-center justify-between text-sm lg:flex rounded-lg p-4">
-        <PokemonGame
-          pokemonArray={pokemonArray}
-          correctPokemonId={correctPokemonId}
-        />
-      </div>
+    <main className="flex min-h-screen flex-col items-center justify-between bg-blue-300 pt-24">
+      <PokemonGame
+        pokemonArray={pokemonArray}
+        correctPokemonId={correctPokemonId}
+      />
     </main>
   );
 }
