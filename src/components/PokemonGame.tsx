@@ -3,6 +3,7 @@
 import Pokemon from "@/utils/interfaces/pokemon.interface";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface PokemonGameProps {
   pokemonArray: Array<Pokemon>;
@@ -16,12 +17,20 @@ export default function PokemonGame({
   pokemonArray,
   correctPokemonId,
 }: PokemonGameProps) {
+  const router = useRouter();
+
   const [isClear, setIsClear] = useState(false);
   const [pokemonSelected, setPokemonSelected] = useState(0);
 
   const onButtonClick = (pokemonId: number) => {
     setIsClear(true);
     setPokemonSelected(pokemonId);
+  };
+
+  const onTryAgainClick = () => {
+    router.refresh();
+    setIsClear(false);
+    setPokemonSelected(0);
   };
 
   return (
@@ -52,7 +61,15 @@ export default function PokemonGame({
                 onClick={() => onButtonClick(pokemon.id)}
                 disabled={isClear ? true : false}
               >
-                <p className="hover:font-bold">{pokemon.name}</p>
+                <p
+                  className={
+                    pokemonSelected == 0
+                      ? "hover:font-bold"
+                      : "hover:font-normal"
+                  }
+                >
+                  {pokemon.name}
+                </p>
               </button>
             </li>
           ))}
@@ -62,9 +79,20 @@ export default function PokemonGame({
         {pokemonSelected == 0 ? (
           <p></p>
         ) : pokemonSelected == correctPokemonId ? (
-          <p className="text-emerald-800">You are correct!</p>
+          <p className="text-emerald-800 p-1">You are correct!</p>
         ) : (
-          <p className="text-red-800">Are you stupid or something?</p>
+          <p className="text-red-800 p-1">Are you stupid or something?</p>
+        )}
+
+        {pokemonSelected != 0 ? (
+          <button
+            className={`bg-white rounded-lg p-1`}
+            onClick={onTryAgainClick}
+          >
+            <p className="hover:font-bold">Try Again</p>
+          </button>
+        ) : (
+          <p></p>
         )}
       </div>
     </>
